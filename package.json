@@ -1,20 +1,26 @@
 {
-  "name": "ts-node-template",
+  "name": "healthcare-claims-ingestion",
   "version": "1.0.0",
-  "description": "Template for a Node.js project with TypeScript",
+  "description": "Healthcare Claims Ingestion API",
   "main": "src/index.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && tsc-alias",
     "test": "vitest run",
     "test:watch": "vitest",
     "start": "node dist/index.js",
     "dev": "nodemon",
+    "setup:env": "sh -c '([ -f .env ] && echo .env already exists) || cp env.example .env'",
+    "setup:dynamodb:ts": "ts-node -r tsconfig-paths/register scripts/setup-dynamodb.ts",
+    "setup:dynamodb": "./scripts/setup-local-dynamodb.sh",
+    "setup": "npm run setup:env && npm run setup:dynamodb",
     "prepare": "husky",
     "commit": "git add . && git-cz",
     "release": "standard-version"
   },
   "keywords": [
-    "template",
+    "healthcare",
+    "claims",
+    "ingestion",
     "node",
     "typescript"
   ],
@@ -22,6 +28,10 @@
   "license": "ISC",
   "devDependencies": {
     "@commitlint/config-conventional": "^19.5.0",
+    "@types/cors": "^2.8.19",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^5.0.3",
+    "@types/multer": "^2.0.0",
     "@types/node": "^22.5.4",
     "commitizen": "^4.3.1",
     "commitlint": "^19.5.0",
@@ -31,6 +41,8 @@
     "nodemon": "^3.1.4",
     "standard-version": "^9.5.0",
     "ts-node": "^10.9.1",
+    "tsc-alias": "^1.8.16",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.0.4",
     "vitest": "^3.0.9"
   },
@@ -38,5 +50,15 @@
     "commitizen": {
       "path": "node_modules/cz-customizable"
     }
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.895.0",
+    "@aws-sdk/lib-dynamodb": "^3.895.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "fast-csv": "^5.0.5",
+    "multer": "^2.0.2",
+    "zod": "^4.1.11"
   }
 }
