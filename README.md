@@ -440,6 +440,7 @@ With additional time, the following enhancements would further strengthen the ap
 ### Testing Enhancements
 - **Integration Tests**: Add end-to-end tests that verify the complete request-response cycle, including file uploads, database interactions, and API responses
 - **DynamoDB Repository Tests**: Implement comprehensive unit tests for the DynamoDB repository implementation, including GSI queries and error scenarios
+- **Application Layer Tests**: Expand controller tests with more edge cases, middleware testing for file upload validation, and factory pattern testing
 
 ### Error Handling Improvements
 - **Infrastructure Layer**: Enhance error handling in repositories and services with more specific error types and better error propagation
@@ -447,7 +448,6 @@ With additional time, the following enhancements would further strengthen the ap
 ### Additional Features
 - **File Storage**: Implement file persistence by saving uploaded CSV files to cloud storage (AWS S3, Google Cloud Storage) for audit trails, reprocessing capabilities, and compliance requirements
 - **API Documentation**: Generate OpenAPI/Swagger documentation for better API discoverability
-- **Performance Optimization**: Implement caching strategies and query optimization for large datasets
 
 ## 👨‍💻 Author
 
