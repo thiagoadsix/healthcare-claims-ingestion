@@ -15,12 +15,22 @@
     "experimentalDecorators": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
   },
   "include": [
-    "src"
+    "src",
+    "__tests__",
+    "src/types/**/*"
   ],
   "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
+    "node_modules"
   ]
 }
