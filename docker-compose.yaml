@@ -1,6 +1,20 @@
-version: '2.1'
-
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      - DYNAMODB_ENDPOINT=http://localstack:4566
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./uploads:/usr/src/app/uploads
+    restart: unless-stopped
+    depends_on:
+      - localstack
+
   localstack:
     image: localstack/localstack
     ports:
@@ -9,6 +23,7 @@ services:
       - DEBUG=1
       - DATA_DIR=/tmp/localstack/data
       - DOCKER_HOST=unix:///var/run/docker.sock
+      - CLEAR_TMP_FOLDER=0
     volumes:
-      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+      - "./localstack:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
