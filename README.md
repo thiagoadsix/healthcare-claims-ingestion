@@ -400,12 +400,6 @@ The application supports multiple repository implementations:
 - **Data persistence** across restarts via `data/claims.json`
 - **Easy testing** without external dependencies
 
-### Repository Selection
-
-The repository implementation is determined by environment configuration:
-- **DynamoDB**: Set `CLAIMS_TABLE_NAME` environment variable
-- **In-Memory**: Default when no DynamoDB configuration is present
-
 ### Repository Architecture Benefits
 
 The Clean Architecture design allows seamless switching between repositories:
